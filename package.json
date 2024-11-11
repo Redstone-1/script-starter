@@ -1,0 +1,19 @@
+{
+  "name": "script",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "node script/gen-tampermonkey.js && nodemon",
+    "dev:node": "tsc --noEmit false --module commonjs --resolveJsonModule false --moduleResolution node --outDir src-node",
+    "dev:build": "node script/gen-style-string.js && tsc && vite build && node script/gen-script-header-comment.js"
+  },
+  "devDependencies": {
+    "@types/less": "^3.0.6",
+    "@types/node": "^22.7.5",
+    "less": "^4.2.0",
+    "nodemon": "^3.1.7",
+    "prettier": "^3.3.3",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.10"
+  }
+}

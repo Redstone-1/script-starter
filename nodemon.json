@@ -1,0 +1,5 @@
+{
+  "ext": "ts,less",
+  "watch": ["src"],
+  "exec": "pnpm dev:build && vite"
+}
