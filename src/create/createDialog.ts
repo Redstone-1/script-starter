@@ -7,10 +7,10 @@ export interface DialogProps {
   maskTransparent?: boolean,
   okText?: string,
   cancelText?: string,
-  onOk?: (...args: any[]) => void,
-  onCancel?: (...args: any[]) => void,
-  onMount?: (...args: any[]) => void,
-  onDestroy?: (...args: any[]) => void,
+  onOk?: (...args: unknown[]) => void,
+  onCancel?: (...args: unknown[]) => void,
+  onMount?: (...args: unknown[]) => void,
+  onDestroy?: (...args: unknown[]) => void,
   hideOk?: boolean,
   hideCancel?: boolean,
   className?: string,
@@ -46,7 +46,11 @@ export const createDialog = ({
   const zIndex = 9999 + length;
 
   const maskNode = document.createElement('div');
-  maskTransparent && maskNode.classList.add('global-dialog-mask-transparent');
+
+  if (maskTransparent) {
+    maskNode.classList.add('global-dialog-mask-transparent');
+  }
+
   const dialogNode = document.createElement('div');
   const header = document.createElement('div');
   header.style.display = 'flex';
@@ -95,7 +99,7 @@ export const createDialog = ({
 
   // 创建一个新的 ResizeObserver 实例
   const resizeObserver = new ResizeObserver(entries => {
-    for (let entry of entries) {
+    for (const entry of entries) {
       if (!isDialogFullScreen) {
         storeDialogWidth = entry.contentRect.width;
         storeDialogHeight = entry.contentRect.height;
@@ -104,7 +108,7 @@ export const createDialog = ({
 
         if (dialogBody?.firstChild) {
           const firstChild = dialogBody.firstChild as HTMLElement;
-          // @ts-ignore
+          // @ts-expect-error
           firstChild.style = firstChild.style ?? '';
           firstChild.style.width = '100%';
           firstChild.style.height = '100%';
@@ -124,7 +128,7 @@ export const createDialog = ({
       duration: 500,
       easing: 'ease-in-out',
       fill: 'forwards'
-    })
+    });
 
     animation.onfinish = () => {
       animation.cancel();
@@ -138,19 +142,19 @@ export const createDialog = ({
       resizeObserver.disconnect();
 
       onDestroy();
-    }
-  }
+    };
+  };
 
   closeBtn.addEventListener('click', () => {
     closeDialog();
-  })
+  });
   exitFullScreenBtn.addEventListener('click', () => {
     if (isDialogFullScreen) {
       isDialogFullScreen = false;
       dialogNode.style.width = `${Math.ceil(storeDialogWidth)}px`;
       dialogNode.style.height = `${Math.ceil(storeDialogHeight)}px`;
     }
-  })
+  });
   fullScreenBtn.addEventListener('click', () => {
     if (!isDialogFullScreen) {
       isDialogFullScreen = true;
@@ -159,7 +163,7 @@ export const createDialog = ({
       dialogBody.style.width = '100%';
       dialogBody.style.height = '100%';
     }
-  })
+  });
 
   headerBtn.appendChild(closeBtn);
   headerBtn.appendChild(exitFullScreenBtn);
@@ -178,7 +182,7 @@ export const createDialog = ({
     dialogNode.classList.add(className);
   }
   if (style) {
-    // @ts-ignore
+    // @ts-expect-error
     dialogNode.style = style;
   }
 
@@ -186,7 +190,7 @@ export const createDialog = ({
     dialogBody.classList.add(bodyClassName);
   }
   if (bodyStyle) {
-    // @ts-ignore
+    // @ts-expect-error
     dialogBody.style = bodyStyle;
   }
 
@@ -205,7 +209,7 @@ export const createDialog = ({
       footerSaveBtn.innerText = okText;
       footerSaveBtn.addEventListener('click', () => {
         applyCallBack(onOk, closeDialog);
-      })
+      });
 
       footerInner.appendChild(footerSaveBtn);
     }
@@ -220,7 +224,7 @@ export const createDialog = ({
         if (res) {
           closeDialog();
         }
-      })
+      });
 
       footerInner.appendChild(footerCancelBtn);
     }
@@ -242,4 +246,4 @@ export const createDialog = ({
   document.body.style.overflow = 'hidden';
 
   onMount();
-}
+};

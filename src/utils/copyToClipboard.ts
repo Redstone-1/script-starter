@@ -18,4 +18,4 @@ export const copyToText = (text: string, messageCallback?: (res: boolean) => voi
       createMessage(MessageTypeEnum.ERROR, '复制失败！');
     }
   }
-}
+};

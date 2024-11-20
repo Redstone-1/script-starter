@@ -5,15 +5,22 @@
   "scripts": {
     "dev": "node script/gen-tampermonkey.js && nodemon",
     "dev:node": "tsc --noEmit false --module commonjs --resolveJsonModule false --moduleResolution node --outDir src-node",
-    "dev:build": "node script/gen-style-string.js && tsc && vite build && node script/gen-script-header-comment.js"
+    "dev:build": "node script/gen-style-string.js && tsc && vite build && node script/gen-script-header-comment.js",
+    "fix": "eslint src -c eslint.config.mjs --fix"
   },
   "devDependencies": {
+    "@eslint/js": "^9.15.0",
     "@types/less": "^3.0.6",
     "@types/node": "^22.7.5",
+    "@typescript-eslint/eslint-plugin": "^8.15.0",
+    "@typescript-eslint/parser": "^8.15.0",
+    "eslint": "^9.15.0",
+    "globals": "^15.12.0",
     "less": "^4.2.0",
     "nodemon": "^3.1.7",
     "prettier": "^3.3.3",
     "typescript": "^5.4.5",
+    "typescript-eslint": "^8.15.0",
     "vite": "^5.2.10"
   }
 }

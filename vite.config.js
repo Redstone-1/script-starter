@@ -4,7 +4,7 @@
 module.exports = {
   server: {
     host: 'localhost',
-    port: 6419,
+    port: 6419
   },
   build: {
     minify: false,
@@ -13,8 +13,8 @@ module.exports = {
       entry: 'src/main.ts',
       name: 'script',
       fileName: 'script',
-      formats: ['iife'],
-    },
+      formats: ['iife']
+    }
   },
   resolve: {
     alias: {
@@ -23,7 +23,7 @@ module.exports = {
       '@utils': '/src/utils',
       '@enum': '/src/enum',
       '@const': '/src/const',
-      '@style': '/src/style',
+      '@style': '/src/style'
     }
   }
 }

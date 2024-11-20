@@ -3,8 +3,8 @@ export const createLoading = (style = 'width: 400px; height: 225px;') => {
   const loadingNode = document.createElement('div');
   loadingNode.classList.add('global-loading');
 
-  // @ts-ignore
+  // @ts-expect-error
   loadingNode.style = style;
 
   return loadingNode;
-}
+};

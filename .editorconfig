@@ -13,7 +13,7 @@ charset = utf-8
 
 # Tab indentation (no size specified)
 [Makefile]
-indent_style = tab
+indent_style = space
 
 # Matches all files within directories that begin with a dot
 [*.md]

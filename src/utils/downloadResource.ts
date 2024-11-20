@@ -6,4 +6,4 @@ export const downloadResource = (url: string, filename = 'download') => {
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
-}
+};

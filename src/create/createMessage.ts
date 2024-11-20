@@ -11,7 +11,7 @@ export const createMessage = (type: 'success' | 'error', message: string, durati
   const svgMap = new Map([
     ['success', svgSuccess],
     ['error', svgError],
-  ])
+  ]);
 
   const innerHTML = `
     ${svgMap.get(type)}
@@ -33,12 +33,16 @@ export const createMessage = (type: 'success' | 'error', message: string, durati
       duration: 500,
       easing: 'ease-in-out',
       fill: 'forwards'
-    })
+    });
 
     animation.onfinish = () => {
       animation.cancel();
-      messageNode && document.body.removeChild(messageNode);
+
+      if (messageNode) {
+        document.body.removeChild(messageNode);
+      }
+
       clearTimeout(timer as NodeJS.Timeout);
-    }
+    };
   }, duration);
-}
+};

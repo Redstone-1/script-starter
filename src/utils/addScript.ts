@@ -26,5 +26,5 @@ export const addScript = (src: string, callback?: (script: HTMLScriptElement) =>
       applyCallBack(callback, script);
       resolve(true);
     }
-  })
-}
+  });
+};

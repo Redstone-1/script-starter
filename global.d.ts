@@ -1,7 +1,7 @@
 declare global {
-  const prettierPlugins: any;
-  const monaco: any;
-  const prettier: any;
+  const prettierPlugins: unknown;
+  const monaco: unknown;
+  const prettier: unknown;
 }
 
 export {};
