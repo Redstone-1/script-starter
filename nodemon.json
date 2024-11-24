@@ -1,5 +1,5 @@
 {
   "ext": "ts,less",
-  "watch": ["src"],
+  "watch": ["src", "style/index.less"],
   "exec": "pnpm dev:build && vite"
 }

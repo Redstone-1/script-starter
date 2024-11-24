@@ -11,6 +11,6 @@ if (codeContent) {
   const code = `${tampermonkeyConfig}\n${codeContent}`;
 
   prettier.format(code, { parser: 'babel' }).then((formatted) => {
-    fs.writeFileSync(path.resolve(__dirname, codeFilePath), formatted)
-  })
+    fs.writeFileSync(path.resolve(__dirname, codeFilePath), formatted);
+  });
 }

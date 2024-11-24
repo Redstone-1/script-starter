@@ -29,4 +29,4 @@ prettier.format(code, { parser: 'babel' }).then((formatted) => {
   else {
     fs.writeFileSync(path.resolve(__dirname, codeFilePath), formatted);
   }
-})
+});
