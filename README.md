@@ -7,7 +7,6 @@
 找到 `tampermonkey.config` 文件，完善配置。下面是配置示例：
 
 ```txt
-// ==UserScript==
 // @name         xxx-script
 // @namespace    http://tampermonkey.net/
 // @version      0.0.1
@@ -15,7 +14,6 @@
 // @author       xiwenge
 // @match        *://link.juejin.cn/*
 // @run-at       document-start
-// ==/UserScript==
 ```
 
 @name 指脚本名称\
