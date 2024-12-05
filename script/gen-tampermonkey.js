@@ -7,20 +7,30 @@ const codeFilePath = '../tampermonkey.js';
 const tampermonkeyConfig = fs.readFileSync(path.resolve(__dirname, '../tampermonkey.config'), 'utf-8');
 const hostPort = `${viteConfig.server.host}:${viteConfig.server.port}`;
 const codeContent = `
+  // ==UserScript==
+  ${tampermonkeyConfig}
+  // ==/UserScript==
+
   (function () {
     'use strict';
-
-    const script = document.createElement('script');
-
-    script.src = 'http://${hostPort}/dist/${viteConfig.build.lib.name}.iife.js';
-
-    document.body.appendChild(script);
+    
+    GM_xmlhttpRequest({
+      method: 'GET',
+      url: 'http://${hostPort}/dist/${viteConfig.build.lib.name}.iife.js',
+      onload: function(res) {
+        if (res && (res.status === 200)) {
+          const text = res.responseText;
+          
+          if (typeof text === 'string') {
+            eval(text);
+          }
+        }
+      }
+    });
   })()
 `;
 
-const code = `${tampermonkeyConfig}\n${codeContent}`;
-
-prettier.format(code, { parser: 'babel' }).then((formatted) => {
+prettier.format(codeContent, { parser: 'babel' }).then((formatted) => {
   if(fs.existsSync(path.resolve(__dirname, codeFilePath))) {
     fs.rm(path.resolve(__dirname, codeFilePath), () => {
       fs.writeFileSync(path.resolve(__dirname, codeFilePath), formatted);

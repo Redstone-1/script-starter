@@ -8,9 +8,14 @@ const codeContent = fs.readFileSync(path.resolve(__dirname, codeFilePath), 'utf-
 const tampermonkeyConfig = fs.readFileSync(path.resolve(__dirname, configFilePath), 'utf-8');
 
 if (codeContent) {
-  const code = `${tampermonkeyConfig}\n${codeContent}`;
+  const code = `
+    // ==UserScript==
+    ${tampermonkeyConfig}
+    // ==/UserScript==
 
+    ${codeContent}
+  `;
   prettier.format(code, { parser: 'babel' }).then((formatted) => {
-    fs.writeFileSync(path.resolve(__dirname, codeFilePath), formatted);
-  });
+    fs.writeFileSync(path.resolve(__dirname, codeFilePath), formatted)
+  })
 }
